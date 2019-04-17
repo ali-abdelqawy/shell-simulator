@@ -1,7 +1,7 @@
 
 public class StringHandler {
 	
-	public static StringBuffer getTheFirstWord(String str) {
+	public static String getTheFirstWord(String str) {
 		int spaceIndex = getFirstIndexOfSpaceChar(str);
 		return generateTheFirstWord(spaceIndex, str);
 	}
@@ -13,13 +13,13 @@ public class StringHandler {
 			return str.length();
 		return spaceIndex;
 	}
-	private static StringBuffer generateTheFirstWord(int spaceIndex, String str) {
+	private static String generateTheFirstWord(int spaceIndex, String str) {
 		StringBuffer firstWord = new StringBuffer("");
 		for(int i = 0; i < spaceIndex; i++)
 		{
 			firstWord.append(str.charAt(i));
 		}
-		return firstWord;
+		return firstWord.toString();
 	}
 	public static String replaceTheFirstWord(String str, String oldWord, String newWord)
 	{
