@@ -2,11 +2,12 @@ import java.util.Scanner;
 
 public class FileHandler {
 	
-	public static String generateDOS_Command(Scanner fileScanner, String DOS_Command)
+	public static String generateLinuxCommand(Scanner fileScanner, String DOS_Command)
 	{
 		String firstWord = StringHandler.getTheFirstWord(DOS_Command);
 		
-		while (fileScanner.hasNext()) {	
+		while (fileScanner.hasNext()) {
+			// line example: mem@free
 			String[] fileLineTokens = extractTokensFromFileLine(fileScanner);
 			if (fileLineTokens[0].equalsIgnoreCase(firstWord)) {
 				DOS_Command = StringHandler.replaceTheFirstWord(DOS_Command, firstWord, fileLineTokens[1]);

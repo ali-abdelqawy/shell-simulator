@@ -2,22 +2,12 @@ import java.util.Scanner;
 
 public class Main {
 	
-	private static String formatMessage()
-	{
-		StringBuffer message = new StringBuffer("");
-		message.append(ComputerInformation.getUsername());
-		message.append("@");
-		message.append(ComputerInformation.getComputerName());
-		message.append(":");
-		message.append(ProcessBuilderHandler.getTheOutput("pwd"));
-		message.deleteCharAt(message.indexOf("\n"));
-		message.append("$ ");
-		return message.toString();
-	}
+
 	public static void main(String[] args) {
 		
-		String message = formatMessage();
-		// Username@computername:currentDirectory$ 
+		// Message Format: Username@computername:currentDirectory$ 
+		String message = StringHandler.formatMessage();
+		// Print the message on the screen and scan the command
 		String DOS_Command = InputObtainer.scanString(message);
 		
 		Scanner fileScanner = null;
@@ -26,16 +16,21 @@ public class Main {
 		if(fileScanner == null)
 			return;
 		
-		DOS_Command = FileHandler.generateDOS_Command(fileScanner, DOS_Command);
+		// Generate the equivalent linux command
+		String LinuxCommand = FileHandler.generateLinuxCommand(fileScanner, DOS_Command);
 		
-		if(printErrorMessage(DOS_Command))
+		if(printErrorMessage(LinuxCommand))
 			return;
 		
-		String output = ProcessBuilderHandler.getTheOutput(DOS_Command);
+		// Get the output from the linux command
+		String output = ProcessBuilderHandler.getTheOutput(LinuxCommand);
 		if(output != null)
 			System.out.println(output);
+		
 		return;
 	}
+	
+
 	
 	private static boolean printErrorMessage(String Command)
 	{

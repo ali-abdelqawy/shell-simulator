@@ -13,6 +13,7 @@ public class StringHandler {
 			return str.length();
 		return spaceIndex;
 	}
+	
 	private static String generateTheFirstWord(int spaceIndex, String str) {
 		StringBuffer firstWord = new StringBuffer("");
 		for(int i = 0; i < spaceIndex; i++)
@@ -21,8 +22,22 @@ public class StringHandler {
 		}
 		return firstWord.toString();
 	}
+	
 	public static String replaceTheFirstWord(String str, String oldWord, String newWord)
 	{
 		return str.replace(oldWord, newWord);
+	}
+	
+	public static String formatMessage()
+	{
+		StringBuffer message = new StringBuffer("");
+		message.append(ComputerInformation.getUsername());
+		message.append("@");
+		message.append(ComputerInformation.getComputerName());
+		message.append(":");
+		message.append(ProcessBuilderHandler.getTheOutput("pwd"));
+		message.deleteCharAt(message.indexOf("\n"));
+		message.append("$ ");
+		return message.toString();
 	}
 }
