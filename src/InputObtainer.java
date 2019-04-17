@@ -3,6 +3,12 @@ import java.util.Scanner;
 
 public class InputObtainer {
 	
+	public static String scanString(String Message)
+	{
+		System.out.printf(Message);
+		return InputObtainer.keyboardScanner();
+	}
+	
 	public static String keyboardScanner() {
 		Scanner keyboardScanner = new Scanner(System.in);
 		String keyboardInput = keyboardScanner.nextLine();

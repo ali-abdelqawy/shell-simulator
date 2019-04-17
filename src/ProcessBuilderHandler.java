@@ -1,5 +1,4 @@
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class ProcessBuilderHandler {
@@ -34,5 +33,21 @@ public class ProcessBuilderHandler {
 			output.append(line + "\n");
 		}
 		return output.toString();
+	}
+	
+	public static String getTheOutput(String DOS_Command)
+	{
+		try
+		{
+			ProcessBuilderHandler pbh = new ProcessBuilderHandler();
+			pbh.executeTheCommand(DOS_Command);
+			pbh.startTheProcess();
+			return pbh.readOutputFromTheCommand();
+		}
+		catch(Exception e)
+		{
+			System.err.println("Some error(s) occurred.");
+		}
+		return null;
 	}
 }

@@ -1,11 +1,24 @@
 import java.util.Scanner;
 
 public class Main {
-
-	public static void main(String[] args) throws Exception {
+	
+	private static String formatMessage()
+	{
+		StringBuffer message = new StringBuffer("");
+		message.append(ComputerInformation.getUsername());
+		message.append("@");
+		message.append(ComputerInformation.getComputerName());
+		message.append(":");
+		message.append(ProcessBuilderHandler.getTheOutput("pwd"));
+		message.deleteCharAt(message.indexOf("\n"));
+		message.append("$ ");
+		return message.toString();
+	}
+	public static void main(String[] args) {
 		
-		String DOS_Command = null;
-		DOS_Command = scanTheString();
+		String message = formatMessage();
+		// Username@computername:currentDirectory$ 
+		String DOS_Command = InputObtainer.scanString(message);
 		
 		Scanner fileScanner = null;
 		fileScanner = InputObtainer.readTheFile(fileScanner);
@@ -18,18 +31,12 @@ public class Main {
 		if(printErrorMessage(DOS_Command))
 			return;
 		
-		ProcessBuilderHandler pbh = new ProcessBuilderHandler();
-		pbh.executeTheCommand(DOS_Command);
-		pbh.startTheProcess();
-		System.out.println(pbh.readOutputFromTheCommand());
+		String output = ProcessBuilderHandler.getTheOutput(DOS_Command);
+		if(output != null)
+			System.out.println(output);
 		return;
 	}
 	
-	private static String scanTheString()
-	{
-		System.out.println("Please Enter the DOS Command:");
-		return InputObtainer.keyboardScanner();
-	}
 	private static boolean printErrorMessage(String Command)
 	{
 		if(Command == null)
