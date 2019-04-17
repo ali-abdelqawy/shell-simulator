@@ -2,16 +2,33 @@ import java.util.Scanner;
 
 public class Main {
 
-	public static void main(String[] args) {
-		System.out.println("Please Enter the DOS Command:");
-		String DOS_Command = InputObtainer.keyboardScanner();
+	public static void main(String[] args) throws Exception {
+		
+		String DOS_Command = null;
+		DOS_Command = scanTheString();
+		
 		Scanner fileScanner = null;
 		fileScanner = InputObtainer.readTheFile(fileScanner);
+		
+		if(fileScanner == null)
+			return;
+		
 		DOS_Command = FileHandler.generateDOS_Command(fileScanner, DOS_Command);
+		
 		if(printErrorMessage(DOS_Command))
 			return;
-		executeTheCommand(DOS_Command);
+		
+		ProcessBuilderHandler pbh = new ProcessBuilderHandler();
+		pbh.executeTheCommand(DOS_Command);
+		pbh.startTheProcess();
+		System.out.println(pbh.readOutputFromTheCommand());
 		return;
+	}
+	
+	private static String scanTheString()
+	{
+		System.out.println("Please Enter the DOS Command:");
+		return InputObtainer.keyboardScanner();
 	}
 	private static boolean printErrorMessage(String Command)
 	{
@@ -21,10 +38,5 @@ public class Main {
 			return true;
 		}
 		return false;
-	}
-	private static void executeTheCommand(String DOS_Command)
-	{
-		ProcessBuilder processBuilder = new ProcessBuilder();
-		processBuilder.command("bash", "-c", DOS_Command);
 	}
 }

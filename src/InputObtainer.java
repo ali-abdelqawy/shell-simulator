@@ -15,7 +15,7 @@ public class InputObtainer {
 			fileScanner = new Scanner(new File("DOS-Commands.txt"));
 		}
 		catch (Exception e) {
-			System.out.println("Couldn't find the file");
+			System.err.println("Couldn't find the file.");
 		}
 		return fileScanner;
 	}
