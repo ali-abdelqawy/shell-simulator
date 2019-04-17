@@ -1,3 +1,4 @@
+import java.util.Scanner;
 
 public class Main {
 
@@ -5,7 +6,8 @@ public class Main {
 		System.out.println("Please Enter the DOS Command:");
 		String DOS_Command = InputObtainer.keyboardScanner();
 		StringBuffer sb = StringHandler.getTheFirstWord(DOS_Command);
-		System.out.println(sb);
+		Scanner fileScanner = null;
+		fileScanner = InputObtainer.readTheFile(fileScanner);
 	}
 
 }
