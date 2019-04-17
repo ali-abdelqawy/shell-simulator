@@ -7,7 +7,11 @@ public class StringHandler {
 	}
 	
 	private static int getFirstIndexOfSpaceChar(String str) {
-		return str.indexOf(' ');
+		int spaceIndex = str.indexOf(' ');
+		// If the string doesn't have any spaces
+		if(spaceIndex == -1)
+			return str.length();
+		return spaceIndex;
 	}
 	private static StringBuffer generateTheFirstWord(int spaceIndex, String str) {
 		StringBuffer firstWord = new StringBuffer("");
@@ -16,5 +20,9 @@ public class StringHandler {
 			firstWord.append(str.charAt(i));
 		}
 		return firstWord;
+	}
+	public static String replaceTheFirstWord(String str, String oldWord, String newWord)
+	{
+		return str.replace(oldWord, newWord);
 	}
 }
