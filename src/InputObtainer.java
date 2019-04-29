@@ -16,9 +16,9 @@ public class InputObtainer {
 		return keyboardInput;
 	}
 	
-	public static Scanner readTheFile(Scanner fileScanner) {
+	public static Scanner readTheFile(Scanner fileScanner, String filename) {
 		try {
-			fileScanner = new Scanner(new File("DOS-Commands.txt"));
+			fileScanner = new Scanner(new File(filename));
 		}
 		catch (Exception e) {
 			System.err.println("Couldn't find the file.");

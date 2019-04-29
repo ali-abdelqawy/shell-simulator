@@ -10,9 +10,9 @@ public class ProcessBuilderHandler {
 		processBuilder = new ProcessBuilder();
 	}
 	
-	public void executeTheCommand(String DOS_Command)
+	public void executeTheCommand(String LinuxCommand)
 	{
-		processBuilder.command("bash", "-c", DOS_Command);
+		processBuilder.command("bash", "-c", LinuxCommand);
 	}
 	
 	public Process startTheProcess() throws Exception
@@ -35,12 +35,12 @@ public class ProcessBuilderHandler {
 		return output.toString();
 	}
 	
-	public static String getTheOutput(String DOS_Command)
+	public static String getTheOutput(String LinuxCommand)
 	{
 		try
 		{
 			ProcessBuilderHandler pbh = new ProcessBuilderHandler();
-			pbh.executeTheCommand(DOS_Command);
+			pbh.executeTheCommand(LinuxCommand);
 			pbh.startTheProcess();
 			return pbh.readOutputFromTheCommand();
 		}
